@@ -5,6 +5,252 @@
 </head>
 
 <body>  
+  <nav class="navbar is-spaced">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <p class="subtitle">BK PETS</p>
+      </div>
+    </div>
+  </nav>
+  <div class="rows">
+    <!--row 1-->
+    <div class="row">
+      <div class="columns has-background-light is-vcentered">
+        <div class="column is-offset-one-fifth">
+          <div class="title has-text-dark">
+            The best products for your cat
+          </div>
+          <div class="subtitle has-text-dark">
+            Because your cats deserve to be at their happiest
+          </div>
+          <button class="button is-dark">
+            Learn more
+          </button>
+        </div>
+        <div class="column">
+            <img src="https://bulma.io/images/placeholders/256x256.png">
+        </div>
+      </div>
+    </div>
+
+    <!--row 2-->
+    <div class="row">
+      <!-- <div class="columns is-vcentered">
+        <div class="column is-offset-one-quarter">
+          <div class="rows">
+            <div class="row">
+                <img src="https://bulma.io/images/placeholders/256x256.png">
+            </div>
+            <div class="row">
+              <div class="columns">
+                <div class="column">
+                  <button class="button is-dark"><</button>
+                </div>
+                <div class="column">
+                  <button class="button is-dark">></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="subtitle bold">BK Dog Shampoo</div>
+          <p>Organic, made from only natural ingredients.</br>
+            Affordable, while being good for your gods skin
+          </p>
+          <ul>
+            <li>Fragrence-free</li>
+            <li>Contains Aloe</li>
+            <li>Helps with shedding</li>
+          </ul>
+          <button class="button is-dark">
+            Buy now
+          </button>
+        </div>
+      </div> -->
+      <div class="column is-offset-one-fifth">
+        <div class="rows">
+          <div class="row" id="product-detail">
+            <div class="table-container">
+              <table class="table is-fullwidth" id="product-table">
+                <th>
+                  <tr>
+                    <td class="is-6"></td>
+                    <td class="is-6"></td>
+                  </tr>
+                </th>
+              </table>
+            </div>
+          </div>
+          <div class="row" id="product-buttons">
+            <div class="columns">
+              <div class="column is-6">
+                <nav class="pagination" role="pagination" aria-label="pagination">
+                  <a class="pagination-previous is-dark" aria-label="Go previous" id="previous-button">&lt;</a>
+                  <a class="pagination-next is-dark" aria-label="Go next" id="next-button">&gt;</a>
+                </nav>
+              </div>
+              <div class="column is-6">
+                <button class="button is-dark">Buy now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--row 3-->
+    <div class="row is-full has-background-light has-text-centered">
+      <div class="title">Your Best Value Proposition</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</br>
+        et dolore magna aliqua. Ut enim ad minim veniam,</p>      <div class="columns">
+            <div class="column">
+                <img src="https://bulma.io/images/placeholders/256x256.png" />
+              <div>@someoneinqueens</div>     
+              <div>my cat loves these shampoos!</div>     
+              <div class="is-size-7">4 weeks ago</div>     
+        </div>
+        <div class="column">
+                <img src="https://bulma.io/images/placeholders/256x256.png" />
+          <div>@someoneinbrooklyn</div>
+          <div>my cat hogs the shower now</div>
+                    <div class="is-size-7">2 weeks ago</div>     
+    
+        </div>
+        <div class="column">
+          <img src="https://bulma.io/images/placeholders/256x256.png" />
+                <div>@someoneinmanhattan</div>
+                <div>Even I like the cat shampoo</div>
+              <div class="is-size-7">4 weeks ago</div>     
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <ul>
+            <li><header>BK PETS</header></li>
+            <li>&copy;2010 - 2020</li>
+            <li>Privacy - Terms</li>
+          </ul>
+        </div>
+        <div class="column">
+          <ul>
+            <li><header class="">Follow us on</header></li>
+            <li>Instagram</li>
+            <li>Facebook</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
 </body>
+
+<script>
+let currentItem = 0;
+let tableRows = null;
+let totalItems = 0;
+const table = document.getElementById("product-table");
+const previousButton = document.getElementById('previous-button');
+const nextButton = document.getElementById('next-button');
+
+window.onload = async() => {
+  var data = await promiseOfProducts;
+  totalItems = data.length;
+
+  const tableBody = document.createElement("tbody");
+  data.forEach((item, index) => {
+    const row = document.createElement("tr");
+
+    // image cell
+    const figureCell = document.createElement("td");
+    figureCell.classList.add("is-6");
+    //const figure = document.createElement("figure");
+    //figure.classList.add("image", "is-256x256", "is-square");
+    const img = document.createElement("img");
+    //img.classList.add("is-256x256");
+    img.src = item.imageUrl;
+    //figure.appendChild(img);
+    figureCell.appendChild(img);
+    row.appendChild(figureCell);
+
+    // info cell
+    const infoCell = document.createElement("td");
+    infoCell.classList.add("is-6");
+    const infoDiv = document.createElement("div");
+    infoDiv.classList.add("content");
+    // info cell - title
+    const title = document.createElement("h1");
+    title.textContent = item.title;
+    infoDiv.appendChild(title);
+    // info cell - description
+    const description = document.createElement("p");
+    description.textContent = item.description;
+    infoDiv.appendChild(description);
+    //info cell - features
+    const featuresDiv = document.createElement("div");
+    const featuresUl = document.createElement("ul");
+    featuresUl.classList.add("has-bullets");
+    item.highlighted_features.forEach((f) => {
+      const featureli = document.createElement("li");
+      featureli.textContent = f;
+      featuresUl.appendChild(featureli);
+    })
+    featuresDiv.appendChild(featuresUl)
+    infoDiv.appendChild(featuresDiv);
+    // info cell - price
+    const price = document.createElement("p");
+    price.textContent = "price: $" + item.price;
+    infoDiv.appendChild(price);
+
+    infoCell.appendChild(infoDiv);
+    row.appendChild(infoCell);
+
+    //append row
+    row.classList.add("table-row");
+    if (index != 0){
+      row.classList.add("is-hidden")
+    }
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  tableRows = tableBody.querySelectorAll(".table-row");
+};
+
+
+
+previousButton.addEventListener("click", ()=> {
+  tableRows[currentItem].classList.add("is-hidden");
+  currentItem--;
+  if (currentItem < 0) {
+    currentItem += totalItems;
+  }
+  tableRows[currentItem].classList.remove("is-hidden");
+})
+
+nextButton.addEventListener("click", ()=> {
+  tableRows[currentItem].classList.add("is-hidden");
+  currentItem++;
+  if (currentItem >= totalItems) {
+    currentItem -= totalItems;
+  }
+  tableRows[currentItem].classList.remove("is-hidden");
+})
+
+const promiseOfProducts = fetch("http://127.0.0.1:5500/public/data/products.json")
+  .then((response) => {
+    return response.json()
+  })
+  .then((data) => {
+    return data;
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+</script>
   
 </html>
