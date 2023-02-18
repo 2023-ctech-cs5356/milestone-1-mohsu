@@ -27,7 +27,7 @@
             Learn more
           </button>
         </div>
-        <div class="column">
+        <div class="column is-flex is-justify-content-center">
             <img src="https://bulma.io/images/placeholders/256x256.png">
         </div>
       </div>
@@ -35,52 +35,9 @@
 
     <!--row 2-->
     <div class="row">
-      <!-- <div class="columns is-vcentered">
-        <div class="column is-offset-one-quarter">
-          <div class="rows">
-            <div class="row">
-                <img src="https://bulma.io/images/placeholders/256x256.png">
-            </div>
-            <div class="row">
-              <div class="columns">
-                <div class="column">
-                  <button class="button is-dark"><</button>
-                </div>
-                <div class="column">
-                  <button class="button is-dark">></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="subtitle bold">BK Dog Shampoo</div>
-          <p>Organic, made from only natural ingredients.</br>
-            Affordable, while being good for your gods skin
-          </p>
-          <ul>
-            <li>Fragrence-free</li>
-            <li>Contains Aloe</li>
-            <li>Helps with shedding</li>
-          </ul>
-          <button class="button is-dark">
-            Buy now
-          </button>
-        </div>
-      </div> -->
       <div class="column is-offset-one-fifth">
         <div class="rows">
-          <div class="row" id="product-detail">
-            <div class="table-container">
-              <table class="table is-fullwidth" id="product-table">
-                <th>
-                  <tr>
-                    <td class="is-6"></td>
-                    <td class="is-6"></td>
-                  </tr>
-                </th>
-              </table>
-            </div>
+          <div class="row" id="product-table">
           </div>
           <div class="row" id="product-buttons">
             <div class="columns">
@@ -90,8 +47,8 @@
                   <a class="pagination-next is-dark" aria-label="Go next" id="next-button">&gt;</a>
                 </nav>
               </div>
-              <div class="column is-6">
-                <button class="button is-dark">Buy now</button>
+              <div class="column is-6 is-flex is-justify-content-center">
+                <button class="button is-dark is-fullwidth" id="buy-button">Buy now</button>
               </div>
             </div>
           </div>
@@ -153,21 +110,26 @@
 let currentItem = 0;
 let tableRows = null;
 let totalItems = 0;
+let data = null;
 const table = document.getElementById("product-table");
 const previousButton = document.getElementById('previous-button');
 const nextButton = document.getElementById('next-button');
 
 window.onload = async() => {
-  var data = await promiseOfProducts;
-  totalItems = data.length;
+  data = await promiseOfProducts;
 
-  const tableBody = document.createElement("tbody");
+  const tableBody = document.createElement("div");
   data.forEach((item, index) => {
-    const row = document.createElement("tr");
+    if (!item.active){
+      return;
+    }
+    totalItems++;
+    const row = document.createElement("div");
+    row.classList.add("columns");
 
     // image cell
-    const figureCell = document.createElement("td");
-    figureCell.classList.add("is-6");
+    const figureCell = document.createElement("div");
+    figureCell.classList.add("column", "is-6");
     //const figure = document.createElement("figure");
     //figure.classList.add("image", "is-256x256", "is-square");
     const img = document.createElement("img");
@@ -178,13 +140,13 @@ window.onload = async() => {
     row.appendChild(figureCell);
 
     // info cell
-    const infoCell = document.createElement("td");
-    infoCell.classList.add("is-6");
+    const infoCell = document.createElement("div");
+    infoCell.classList.add("column", "is-6");
     const infoDiv = document.createElement("div");
     infoDiv.classList.add("content");
     // info cell - title
     const title = document.createElement("h1");
-    title.textContent = item.title;
+    title.textContent = item.title.replace("dog", "cat");
     infoDiv.appendChild(title);
     // info cell - description
     const description = document.createElement("p");
@@ -196,14 +158,16 @@ window.onload = async() => {
     featuresUl.classList.add("has-bullets");
     item.highlighted_features.forEach((f) => {
       const featureli = document.createElement("li");
-      featureli.textContent = f;
+      featureli.textContent = f.replace("dog", "cat");
       featuresUl.appendChild(featureli);
     })
     featuresDiv.appendChild(featuresUl)
     infoDiv.appendChild(featuresDiv);
+    
     // info cell - price
     const price = document.createElement("p");
-    price.textContent = "price: $" + item.price;
+    price.classList.add("py-3");
+    price.textContent = "Price: $" + item.price;
     infoDiv.appendChild(price);
 
     infoCell.appendChild(infoDiv);
@@ -239,6 +203,11 @@ nextButton.addEventListener("click", ()=> {
     currentItem -= totalItems;
   }
   tableRows[currentItem].classList.remove("is-hidden");
+})
+
+const buyButton = document.getElementById("buy-button");
+buyButton.addEventListener("click", ()=> {
+  window.location = "http://127.0.0.1:5500/public/stripe.html?paylink=" + data[currentItem].paymentLink;
 })
 
 const promiseOfProducts = fetch("http://127.0.0.1:5500/public/data/products.json")
