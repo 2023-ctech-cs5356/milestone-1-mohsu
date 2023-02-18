@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: education/autograding@v1
-      - name: 'ls files'
+      - name: "ls files"
         if: always()
         run: ls -al . && ls -al ./milestone-1-tests/
       - name: "Check file existence"
@@ -28,5 +28,5 @@ jobs:
         continue-on-error: true
         if: always() && steps.check_files.outputs.files_exists == 'true'
         with:
-          repo-token: "${{secrets.GITHUB_TOKEN}}"
+          repo-token: "${{secrets.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}}"
           report-json: "milestone-1-tests/eslint-report.json"
