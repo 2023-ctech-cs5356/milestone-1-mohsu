@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+"on":
   push:
     branches:
       - main
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CS5356_MILESTONE1_34625 }}'
+          repoToken: "${{ secrets.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 }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CS5356_MILESTONE1_34625 }}"
           channelId: live
           projectId: cs5356-milestone1-34625
