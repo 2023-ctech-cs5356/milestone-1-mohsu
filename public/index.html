@@ -211,7 +211,7 @@
 
   const buyButton = document.getElementById("buy-button");
   buyButton.addEventListener("click", () => {
-    window.location = baseUrl + "stripe.html?paylink=" + data[currentItem].paymentLink;
+    window.location = data[currentItem].paymentLink;
   })
 
   const promiseOfProducts = fetch(baseUrl + "data/products.json")
