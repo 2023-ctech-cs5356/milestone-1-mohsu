@@ -28,5 +28,5 @@ jobs:
         continue-on-error: true
         if: always() && steps.check_files.outputs.files_exists == 'true'
         with:
-          repo-token: "${{secrets.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}}"
+          repo-token: "${{secrets.GITHUB_TOKEN}}"
           report-json: "milestone-1-tests/eslint-report.json"

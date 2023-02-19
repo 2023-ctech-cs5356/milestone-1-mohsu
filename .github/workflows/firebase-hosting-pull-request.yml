@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.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 }}"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CS5356_MILESTONE1_34625 }}"
           projectId: cs5356-milestone1-34625
