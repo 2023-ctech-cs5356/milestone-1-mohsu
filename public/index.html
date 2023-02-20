@@ -4,7 +4,113 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
-<body>  
+<body>
+  <nav class="navbar is-spaced">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <p class="subtitle">BK PETS</p>
+      </div>
+    </div>
+  </nav>
+  <div class="rows">
+    <!--row 1-->
+    <div class="row">
+      <div class="columns has-background-light is-vcentered">
+        <div class="column is-offset-one-fifth">
+          <div class="title has-text-dark">
+            The best products for your cat
+          </div>
+          <div class="subtitle has-text-dark">
+            Because your cats deserve to be at their happiest
+          </div>
+          <button class="button is-dark">
+            Learn more
+          </button>
+        </div>
+        <div class="column is-flex is-justify-content-center">
+          <img src="https://bulma.io/images/placeholders/256x256.png">
+        </div>
+      </div>
+    </div>
+
+    <!--row 2-->
+    <div class="row">
+      <div class="column is-offset-one-fifth">
+        <div class="rows">
+          <div class="row" id="product-table">
+          </div>
+          <div class="row" id="product-buttons">
+            <div class="columns">
+              <div class="column is-6">
+                <nav class="pagination" role="pagination" aria-label="pagination">
+                  <a class="pagination-previous is-dark" aria-label="Go previous" id="previous-button">&lt;</a>
+                  <a class="pagination-next is-dark" aria-label="Go next" id="next-button">&gt;</a>
+                </nav>
+              </div>
+              <div class="column is-6 is-flex is-justify-content-center">
+                <button class="button is-dark is-fullwidth" id="buy-button">Buy now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--row 3-->
+    <div class="row is-full has-background-light has-text-centered">
+      <div class="title">Your Best Value Proposition</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</br>
+        et dolore magna aliqua. Ut enim ad minim veniam,</p>
+      <div class="columns">
+        <div class="column">
+          <img src="https://bulma.io/images/placeholders/256x256.png" />
+          <div>@someoneinqueens</div>
+          <div>my cat loves these shampoos!</div>
+          <div class="is-size-7">4 weeks ago</div>
+        </div>
+        <div class="column">
+          <img src="https://bulma.io/images/placeholders/256x256.png" />
+          <div>@someoneinbrooklyn</div>
+          <div>my cat hogs the shower now</div>
+          <div class="is-size-7">2 weeks ago</div>
+
+        </div>
+        <div class="column">
+          <img src="https://bulma.io/images/placeholders/256x256.png" />
+          <div>@someoneinmanhattan</div>
+          <div>Even I like the cat shampoo</div>
+          <div class="is-size-7">4 weeks ago</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <ul>
+            <li>
+              <header>BK PETS</header>
+            </li>
+            <li>&copy;2010 - 2020</li>
+            <li>Privacy - Terms</li>
+          </ul>
+        </div>
+        <div class="column">
+          <ul>
+            <li>
+              <header class="">Follow us on</header>
+            </li>
+            <li>Instagram</li>
+            <li>Facebook</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
 </body>
-  
+
+<script src="index.js"></script>
+
 </html>
